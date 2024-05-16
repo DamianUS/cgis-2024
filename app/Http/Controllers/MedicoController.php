@@ -35,7 +35,6 @@ class MedicoController extends Controller
     private function createUser(Request $request)
     {
         $user = new User($request->validated());
-        $user->password = Hash::make($user->password);
         $user->save();
         return $user;
     }
