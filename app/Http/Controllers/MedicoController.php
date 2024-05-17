@@ -96,7 +96,7 @@ class MedicoController extends Controller
     public function destroy(Medico $medico)
     {
         $this->authorize('delete', $medico);
-        if($medico->delete())
+        if($medico->delete() && $medico->user->delete())
             session()->flash('success', 'Médico borrado correctamente. Si nos da tiempo haremos este mensaje internacionalizable y parametrizable');
         else
             session()->flash('warning', 'El médico no pudo borrarse. Es probable que se deba a que tenga asociada información como citas que dependen de él.');
